@@ -21,6 +21,7 @@ class RegisterController extends Controller {
     public function register_user() {
         $this->form_validation->setRules([
             'username' => 'required|min_length[5]|max_length[12]',
+            'email'    => 'required',
             'password' => 'required|min_length[8]',
             'confirm_password' => 'required|matches[password]'
         ]);
@@ -30,6 +31,7 @@ class RegisterController extends Controller {
         } else {
             $data = [
                 'username' => $this->request->getPost('username'),
+                'email'    => $this->request->getPost('email'),
                 'password' => password_hash($this->request->getPost('password'), PASSWORD_DEFAULT),
             ];
 

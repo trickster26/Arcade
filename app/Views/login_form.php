@@ -1,3 +1,4 @@
+<!-- login_view.php -->
 <!DOCTYPE html>
 <html>
 <head>
@@ -5,9 +6,13 @@
 </head>
 <body>
     <h2>User Login</h2>
-    <?php echo validation_errors(); ?>
-    
-    <?php echo form_open('login/login_user'); ?>
+
+    <?php if(session()->has('errors')) : ?>
+        <div>
+            <?= session('errors') ?>
+        </div>
+    <?php endif; ?>
+<form action="" method="POST">
         <label for="username">Username:</label>
         <input type="text" name="username" required>
         <br>
@@ -17,6 +22,6 @@
         <br>
 
         <input type="submit" value="Login">
-    <?php echo form_close(); ?>
+    </form>
 </body>
 </html>

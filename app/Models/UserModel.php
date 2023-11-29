@@ -16,4 +16,22 @@ class UserModel extends Model {
     public function getUser($data) {
         return $this->where($data)->first();
     }
+
+    public function login_user($params = []){
+        if(empty($params)){
+            return false;
+        }
+        $this->select('username');
+        $this->where('username',$params['username']);
+        $this->where('password',$params['password']);
+        $result = $this->first();
+        return $result;
+    }
+
+    public function register_user($params = []){
+        if(empty($params)){
+            return false;
+        }
+        return $this->table('users')->insert($params);
+    }
 }
